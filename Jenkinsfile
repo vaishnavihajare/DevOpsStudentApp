@@ -10,25 +10,31 @@ pipeline {
 
         stage('Check Python') {
             steps {
-                bat 'python --version'
+                bat '"C:\\Users\\Admin\\AppData\\Local\\Programs\\Python\\Python311\\python.exe" --version'
+            }
+        }
+
+        stage('Create Python Environment') {
+            steps {
+                bat '"C:\\Users\\Admin\\AppData\\Local\\Programs\\Python\\Python311\\python.exe" -m venv .venv-ci'
             }
         }
 
         stage('Install Dependencies') {
             steps {
-                bat 'python -m pip install -r requirements.txt'
+                bat '.venv-ci\\Scripts\\python.exe -m pip install -r requirements.txt'
             }
         }
 
         stage('Run Python Application') {
             steps {
-                bat 'python hello.py'
+                bat '.venv-ci\\Scripts\\python.exe hello.py'
             }
         }
 
         stage('Run Pytest') {
             steps {
-                bat 'python -m pytest -v'
+                bat '.venv-ci\\Scripts\\python.exe -m pytest -v'
             }
         }
 
@@ -40,7 +46,7 @@ pipeline {
 
         stage('Evidently Check') {
             steps {
-                bat 'python -c "import evidently; print(\'Evidently installed successfully\')"'
+                bat '.venv-ci\\Scripts\\python.exe -c "import evidently; print(\'Evidently installed successfully\')"'
             }
         }
     }
