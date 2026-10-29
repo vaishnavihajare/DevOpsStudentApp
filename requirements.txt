@@ -1,3 +1,4 @@
 Flask
 pytest
 evidently
+pandas<3.0
