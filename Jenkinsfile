@@ -39,10 +39,10 @@ pipeline {
         }
 
         stage('Docker Build') {
-            steps {
-                bat 'docker build -t devopsstudentapp:uat .'
-            }
-        }
+    steps {
+        bat '"C:\\Users\\Admin\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.exe" build -t devopsstudentapp:uat .'
+    }
+}
 
         stage('Evidently Check') {
             steps {
